@@ -81,7 +81,7 @@ def db_seed():
 @app.route('/')
 def hello_world():
     content = open('main.html').read()
-    return Response(content, mimetype="text/html")
+    return Response(content.format, mimetype="text/html")
 
 
 @app.route('/super_simple')
