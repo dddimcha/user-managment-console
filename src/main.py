@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 import os
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, Response, render_template
 from sqlalchemy import Column, Integer, String, Float
 from flask_mail import Mail, Message
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
-from flask_jwt_extended import  JWTManager, jwt_required, create_access_token
+from flask_jwt_extended import JWTManager, jwt_required, create_access_token
 
 app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -80,7 +80,8 @@ def db_seed():
 
 @app.route('/')
 def hello_world():
-    return 'Hello World!'
+    content = open('main.html').read()
+    return Response(content, mimetype="text/html")
 
 
 @app.route('/super_simple')
